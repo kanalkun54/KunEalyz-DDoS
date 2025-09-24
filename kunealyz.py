@@ -44,13 +44,13 @@ def log_attack_status(message, level='info', print_to_terminal=True):
 def display_header():
     header_lines = [                                                                    {Fore.RED}  {Fore.WHITE}
         f"{Fore.GREEN}══════════════════════════════════════════════════════════════════════════",
-        f"{Fore.RED}█▒▒  █▒▒█▒▒  █▒▒██▒▒    █▒▒██████▒▒ ███▒▒  █▒▒█▒▒     █{Fore.GREEN}▒▒{Fore.RED}██████{Fore.GREEN}▒▒",
+        f"{Fore.RED}█▒▒  █▒▒█▒▒  █▒▒██▒▒    █▒▒██████▒▒ ███▒▒  █▒▒█▒▒      █{Fore.GREEN}▒▒{Fore.RED}██████{Fore.GREEN}▒▒",
         f"{Fore.RED}█▒▒ █▒▒ █▒▒  █▒▒█▒█▒▒   █▒▒█▒▒     █▒▒ █▒▒ █▒▒ █▒▒    █{Fore.GREEN}▒▒{Fore.RED}     █{Fore.GREEN}▒▒",
         f"{Fore.RED}█▒▒█▒▒  █▒▒  █▒▒█▒▒█▒▒  █▒▒█▒▒    █▒▒   █▒▒█▒▒  █▒▒  █{Fore.GREEN}▒▒{Fore.RED}     █{Fore.GREEN}▒▒",
-        f"{Fore.RED}█▒█▒▒   █▒▒  █▒▒█▒▒ █▒▒ █▒▒█████▒▒█▒▒   █▒▒█▒▒   █▒▒█{Fore.GREEN}▒▒{Fore.RED}   █{Fore.GREEN}▒▒",
-        f"{Fore.WHITE}█▒▒█▒▒  █▒▒  █▒▒█▒▒  █▒▒█▒▒█▒▒    █▒█████▒▒█▒▒    ██{Fore.GREEN}▒▒{Fore.WHITE}     █{Fore.GREEN}▒▒",
-        f"{Fore.WHITE}█▒▒ █▒▒ █▒▒  █▒▒█▒▒   █▒█▒▒█▒▒    █▒▒   █▒▒█▒▒    █{Fore.GREEN}▒▒{Fore.WHITE}     █{Fore.GREEN}▒▒",
-        f"{Fore.WHITE}█▒▒  █▒▒██████▒▒█▒▒    ██▒▒█████▒▒█▒▒   █▒▒█████▒▒█{Fore.GREEN}▒▒{Fore.WHITE}    ██████{Fore.GREEN}▒▒",
+        f"{Fore.RED}█▒█▒▒   █▒▒  █▒▒█▒▒ █▒▒ █▒▒█████▒▒█▒▒   █▒▒█▒▒   █▒▒█{Fore.GREEN}▒▒{Fore.RED}    █{Fore.GREEN}▒▒",
+        f"{Fore.WHITE}█▒▒█▒▒  █▒▒  █▒▒█▒▒  █▒▒█▒▒█▒▒    █▒█████▒▒█▒▒    ██{Fore.GREEN}▒▒{Fore.WHITE}      █{Fore.GREEN}▒▒",
+        f"{Fore.WHITE}█▒▒ █▒▒ █▒▒  █▒▒█▒▒   █▒█▒▒█▒▒    █▒▒   █▒▒█▒▒    █{Fore.GREEN}▒▒{Fore.WHITE}      █{Fore.GREEN}▒▒",
+        f"{Fore.WHITE}█▒▒  █▒▒██████▒▒█▒▒    ██▒▒█████▒▒█▒▒   █▒▒█████▒▒█{Fore.GREEN}▒▒{Fore.WHITE}     ██████{Fore.GREEN}▒▒",
         f"{Fore.YELLOW}                                                       {Fore.GREEN}",
         f"{Fore.YELLOW}════════════════════════════════════════════════════════════════════════════",
     ]
