@@ -44,30 +44,14 @@ def log_attack_status(message, level='info', print_to_terminal=True):
 def display_header():
     header_lines = [
         f"{Fore.GREEN}══════════════════════════════════════════════════════════════════════════",
+        f"{Fore.YELLOW}",██████▒▒
+        f"{Fore.YELLOW}    ██▒▒               
+        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒       
+        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒                
+        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒        
+        f"{Fore.YELLOW} █████▒▒    ██▒▒       
+        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒      
         f"{Fore.YELLOW}",
-        f"{Fore.YELLOW} ██████▒▒   ██▒▒                 ██████▒▒ ██▒▒   ██▒▒",
-        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒                ██▒▒      ██▒▒  ██▒▒",
-        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒                ██▒▒      ██▒▒ ██▒▒",
-        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒        {Fore.RED}█▒▒     {Fore.YELLOW}██▒▒      ██▒▒██▒▒",
-        f"{Fore.YELLOW} █████▒▒    ██▒▒       {Fore.RED}███▒▒    {Fore.YELLOW}██▒▒      ██▒██▒▒",
-        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒      {Fore.RED}██▒██▒▒   {Fore.YELLOW}██▒▒      ██▒▒██▒▒ ",
-        f"{Fore.YELLOW} ██▒▒   ██▒▒██▒▒     {Fore.RED}██▒▒ ██▒▒  {Fore.YELLOW}██▒▒      ██▒▒ ██▒▒",
-        f"{Fore.YELLOW} ██████▒▒   ██████▒▒{Fore.RED}██▒▒   ██▒▒  {Fore.YELLOW}██████▒▒ ██▒▒   ██▒▒",
-        f"{Fore.RED}                   {Fore.RED}██▒▒     ██▒▒    {Fore.GREEN}███████▒▒  ████▒▒     ████▒██▒▒       ██▒▒",
-        f"{Fore.RED}                  {Fore.RED}████████▒▒ ██▒▒   {Fore.GREEN}██▒▒   ██▒▒██▒██▒▒   ██▒██▒▒██▒▒     ██▒▒",
-        f"{Fore.RED}                 {Fore.RED}██▒▒         ██▒▒  {Fore.GREEN}██▒▒   ██▒▒██▒▒██▒▒ ██▒▒██▒▒ ██▒▒   ██▒▒",
-        f"{Fore.RED}                {Fore.RED}██▒▒           ██▒▒ {Fore.GREEN}██▒▒   ██▒▒██▒▒ ██▒██▒▒ ██▒▒  ██▒▒ ██▒▒",
-        f"{Fore.GREEN}               {Fore.RED}██▒▒             ██▒▒{Fore.GREEN}██▒▒   ██▒▒██▒▒  ███▒▒  ██▒▒   ██▒██▒▒",
-        f"{Fore.GREEN}                                    ██████▒▒   ██▒▒   ██▒▒  ██▒▒    ███▒▒",
-        f"{Fore.GREEN}                                    ██▒▒ ██▒▒  ██▒▒         ██▒▒     ██▒▒",
-        f"{Fore.GREEN}                                    ██▒▒   ██▒▒██▒▒         ██▒▒     ██▒▒",
-        f"{Fore.GREEN}",
-        f"{Fore.GREEN} ",    
-        f"{Fore.RED}    █████▒▒  ███▒▒   ██▒▒   ██▒▒ █▒▒  █▒▒ ██▒▒ █▒▒ █▒▒███████▒▒ █▒▒   █▒▒",
-        f"{Fore.RED}   █▒▒      █▒▒  █▒▒ █▒█▒▒ █▒█▒▒ █▒▒  █▒▒ █▒█▒▒█▒▒ █▒▒   █▒▒     █▒▒ █▒▒",
-        f"{Fore.WHITE}   █▒▒      █▒▒  █▒▒ █▒▒█▒█▒▒█▒▒ █▒▒  █▒▒ █▒▒█▒█▒▒ █▒▒   █▒▒      ██▒▒",
-        f"{Fore.WHITE}    ████▒▒   ███▒▒   █▒▒██▒▒ █▒▒  ███▒▒   █▒▒ ██▒▒ █▒▒   █▒▒       █▒▒",
-        f"{Fore.WHITE}",      
         f"{Fore.YELLOW}════════════════════════════════════════════════════════════════════════════",
     ]
     for line in header_lines:
@@ -75,7 +59,7 @@ def display_header():
     # Versi dan URL
     print(f"{Fore.WHITE}{Style.BRIGHT}{' ' * 57}v.1.0")
     print(f"{Fore.CYAN}{Style.BRIGHT}{' ' * 16}https://kunkaffa@gmail.com")
-    print(f"{Fore.CYAN}|{'=' * 74}|")
+    print(f"{Fore.CYAN}{'=⟩' * 2}")
 
 
 def countdown(t):
@@ -95,8 +79,8 @@ def countdown(t):
 
 
 def get_user_input(prompt_message):
-    print(f"{Fore.GREEN}|{' ' * 4}[?] {prompt_message.ljust(63)}|")
-    print(f"{Fore.GREEN}|{'=' * 74}|")
+    print(f"{Fore.GREEN}{' ' * 4}[?] {prompt_message.ljust(63)}|")
+    print(f"{Fore.GREEN}{'=⟩' * 2}")
     return input(f"{Fore.YELLOW}{' ' * 4}> ").strip()
 
 
@@ -248,9 +232,9 @@ def print_summary(url: str, duration: int, concurrency: int, method: str, rate_l
 def confirm_ethical_use(target_host: str) -> bool:
     print(f"{Fore.YELLOW}| PERINGATAN: Gunakan hanya pada server milik sendiri dengan izin. |")
     print(f"{Fore.YELLOW}| Target: {target_host.ljust(61)}|")
-    print(f"{Fore.YELLOW}| Ketik 'YA' untuk melanjutkan: {' ' * 35}|")
+    print(f"{Fore.YELLOW}| Ketik 'Ok' untuk melanjutkan: {' ' * 35}|")
     ans = input("    > ").strip().upper()
-    return ans == 'YA'
+    return ans == 'Ok'
 
 
 def launch_attack(target_url, duration, concurrency=10, method='GET', rate_limit=None):
