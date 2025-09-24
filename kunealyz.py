@@ -26,10 +26,6 @@ LOGO = """
         ═════════════════════════════════════════════════════════════════
    033[0m 
     """
-            
-for line in header_lines:
-    print(line)
-
 async def test_url(url, proxy, concurrency=50, duration=60):
     start_time = datetime.now()
     request_count = 0
@@ -52,7 +48,7 @@ async def test_url(url, proxy, concurrency=50, duration=60):
                         request_count += 1
                         print(f"{Fore.GREEN}[+] Success | Status: {response.status} | Latency: {latency*1000:.2f}ms")
                 except Exception as e:
-                    print(f"\033[92m[-] Request failed: {e\033[0m")
+                    print(f"\033[92m[-] Request failed: {e}\033[0m")
             
             while (datetime.now() - start_time).total_seconds() < duration:
                 tasks = [single_request() for _ in range(concurrency)]
