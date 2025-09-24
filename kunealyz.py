@@ -1,4 +1,4 @@
-if #This Script DoNot Use Proxy
+#This Script DoNot Use Proxy
 
 import aiohttp
 import asyncio
@@ -6,25 +6,26 @@ from aiohttp_socks import ProxyConnector
 import numpy as np
 from datetime import datetime
 import os
-from colorama import Fore, Style, initif 
 
 # Clear screen
 os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def display_header():
-    header_lines = [                                                                    {Fore.RED}  {Fore.WHITE}
-        f"{Fore.GREEN}══════════════════════════════════════════════════════════════════",
-        f"{Fore.RED}█▒▒  █▒▒█▒▒  █▒▒██▒▒    █▒▒██████▒▒ ███▒▒  █▒▒   ███████{Fore.GREEN}▒▒",
-        f"{Fore.RED}█▒▒ █▒▒ █▒▒  █▒▒█▒█▒▒   █▒▒█▒▒     █▒▒ █▒▒ █▒▒         █{Fore.GREEN}▒▒",
-        f"{Fore.RED}█▒▒█▒▒  █▒▒  █▒▒█▒▒█▒▒  █▒▒█▒▒    █▒▒   █▒▒█▒▒       █{Fore.GREEN}▒▒",
-        f"{Fore.RED}█▒█▒▒   █▒▒  █▒▒█▒▒ █▒▒ █▒▒█████▒▒█▒▒   █▒▒█▒▒      █{Fore.GREEN}▒▒",
-        f"{Fore.WHITE}█▒▒█▒▒  █▒▒  █▒▒█▒▒  █▒▒█▒▒█▒▒    █▒█████▒▒█▒▒     █{Fore.GREEN}▒▒",
-        f"{Fore.WHITE}█▒▒ █▒▒ █▒▒  █▒▒█▒▒   █▒█▒▒█▒▒    █▒▒   █▒▒█▒▒    █{Fore.GREEN}▒▒",
-        f"{Fore.WHITE}█▒▒  █▒▒██████▒▒█▒▒    ██▒▒█████▒▒█▒▒   █▒▒█████▒▒███████{Fore.GREEN}▒▒",
-        f"{Fore.YELLOW}                                                       {Fore.GREEN}",
-        f"{Fore.YELLOW}═════════════════════════════════════════════════════════════════",
-    ]
+# ASCII Logo
+LOGO = """    
+\033[92m
+        ══════════════════════════════════════════════════════════════════
+        █▒▒  █▒▒█▒▒  █▒▒██▒▒    █▒▒██████▒▒ ███▒▒  █▒▒   ███████▒▒
+        █▒▒ █▒▒ █▒▒  █▒▒█▒█▒▒   █▒▒█▒▒     █▒▒ █▒▒ █▒▒         █▒▒
+        █▒▒█▒▒  █▒▒  █▒▒█▒▒█▒▒  █▒▒█▒▒    █▒▒   █▒▒█▒▒       █▒▒
+        █▒█▒▒   █▒▒  █▒▒█▒▒ █▒▒ █▒▒█████▒▒█▒▒   █▒▒█▒▒      █▒▒
+        █▒▒█▒▒  █▒▒  █▒▒█▒▒  █▒▒█▒▒█▒▒    █▒█████▒▒█▒▒     █▒▒
+        █▒▒ █▒▒ █▒▒  █▒▒█▒▒   █▒█▒▒█▒▒    █▒▒   █▒▒█▒▒    █▒▒
+        █▒▒  █▒▒██████▒▒█▒▒    ██▒▒█████▒▒█▒▒   █▒▒█████▒▒███████▒▒
+                                                        
+        ═════════════════════════════════════════════════════════════════
+   033[0m 
+    """
             
 for line in header_lines:
     print(line)
@@ -37,7 +38,7 @@ async def test_url(url, proxy, concurrency=50, duration=60):
     try:
         connector = ProxyConnector.from_url(proxy)
         async with aiohttp.ClientSession(connector=connector) as session:
-            print(f"{Fore.YELLOW}[*] Starting stress test on {url} with proxy {proxy}")
+            print(f"\033[33m[*] Starting stress test on {url} with proxy {proxy}\033[0m")
             tasks = []
             
             async def single_request():
@@ -51,7 +52,7 @@ async def test_url(url, proxy, concurrency=50, duration=60):
                         request_count += 1
                         print(f"{Fore.GREEN}[+] Success | Status: {response.status} | Latency: {latency*1000:.2f}ms")
                 except Exception as e:
-                    print(f"{Fore.MAGENTA}[-] Request failed: {e")
+                    print(f"\033[92m[-] Request failed: {e\033[0m")
             
             while (datetime.now() - start_time).total_seconds() < duration:
                 tasks = [single_request() for _ in range(concurrency)]
@@ -60,7 +61,7 @@ async def test_url(url, proxy, concurrency=50, duration=60):
             
             # Calculate metrics
             if latencies:
-                print(f"{Fore.CYAN}[+] Test completed. Requests sent: {request_count}")
+                print(f"\033[32m[+] Test completed. Requests sent: {request_count}\033[0m")
                 print(f"[+] RPS: {request_count / duration:.2f}")
                 print(f"[+] Latency (ms): P50={np.percentile(latencies, 50)*1000:.2f}, "
                       f"P95={np.percentile(latencies, 95)*1000:.2f}, "
