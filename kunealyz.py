@@ -77,7 +77,7 @@ async def main():
     
     # Validate inputs
     while True:
-        url = input("[?] Enter target URL (e.g., https://example.com): ").strip()
+        url = input("[?] Enter target URL (e.g., https://ex.com): ").strip()
         if url.startswith(('http://', 'https://')):
             break
         print("\033[91m[!] URL must start with http:// or https://\033[0m")
