@@ -47,7 +47,7 @@ def display_header():
         f"{Fore.RED}█▒▒  █▒▒█▒▒  █▒▒██▒▒    █▒▒██████▒▒ ███▒▒  █▒▒█▒▒      █{Fore.GREEN}▒▒{Fore.RED}██████{Fore.GREEN}▒▒",
         f"{Fore.RED}█▒▒ █▒▒ █▒▒  █▒▒█▒█▒▒   █▒▒█▒▒     █▒▒ █▒▒ █▒▒ █▒▒    █{Fore.GREEN}▒▒{Fore.RED}      █{Fore.GREEN}▒▒",
         f"{Fore.RED}█▒▒█▒▒  █▒▒  █▒▒█▒▒█▒▒  █▒▒█▒▒    █▒▒   █▒▒█▒▒  █▒▒  █{Fore.GREEN}▒▒{Fore.RED}      █{Fore.GREEN}▒▒",
-        f"{Fore.RED}█▒█▒▒   █▒▒  █▒▒█▒▒ █▒▒ █▒▒█████▒▒█▒▒   █▒▒█▒▒   █▒▒█{Fore.GREEN}▒▒{Fore.RED}     █{Fore.GREEN}▒▒",
+        f"{Fore.RED}█▒█▒▒   █▒▒  █▒▒█▒▒ █▒▒ █▒▒█████▒▒█▒▒   █▒▒█▒▒   █▒▒█{Fore.GREEN}▒▒{Fore.RED}      █{Fore.GREEN}▒▒",
         f"{Fore.WHITE}█▒▒█▒▒  █▒▒  █▒▒█▒▒  █▒▒█▒▒█▒▒    █▒█████▒▒█▒▒    ██{Fore.GREEN}▒▒{Fore.WHITE}     █{Fore.GREEN}▒▒",
         f"{Fore.WHITE}█▒▒ █▒▒ █▒▒  █▒▒█▒▒   █▒█▒▒█▒▒    █▒▒   █▒▒█▒▒    █{Fore.GREEN}▒▒{Fore.WHITE}     █{Fore.GREEN}▒▒",
         f"{Fore.WHITE}█▒▒  █▒▒██████▒▒█▒▒    ██▒▒█████▒▒█▒▒   █▒▒█████▒▒█{Fore.GREEN}▒▒{Fore.WHITE}     ██████{Fore.GREEN}▒▒",
@@ -68,18 +68,18 @@ def countdown(t):
         remaining_time = (until - datetime.datetime.now()).total_seconds()
         if remaining_time > 1:
             stdout.flush()
-            stdout.write(f"\r{Fore.BLUE}| [*]{Fore.RED} {remaining_time:.2f} {Fore.BLUE} Sec left{' ' * 26}|")
+            stdout.write(f"\r{Fore.BLUE}| [*]{Fore.RED} {remaining_time:.2f} {Fore.BLUE} Sec left{' ' * 26}")
             print(f"\r{Fore.RED} ▒▒ ▒▒ ▒▒ ▒▒ ▒▒ ▒▒ {Fore.CYAN}▒▒ ▒▒ ▒▒ ▒▒ ▒▒")
             print(f"\r{Fore.GREEN}▒BLACK▒ARMY▒{Fore.WHITE}▒INJECT▒ATTACK▒ ▒ ")
         else:
             stdout.flush()
-            stdout.write(f"\r{Fore.RED}|▒[÷]▒ {Fore.YELLOW}BLACK-ARMY {Fore.CYAN} Attack has been completed|\n")
+            stdout.write(f"\r{Fore.RED}|▒[÷]▒ {Fore.YELLOW}BLACK-ARMY {Fore.CYAN} Attack has been completed\n")
             print(f"{Fore.CYAN}{'=⟩' * 1}")
             return
 
 
 def get_user_input(prompt_message):
-    print(f"{Fore.GREEN}{' ' * 4}[?] {prompt_message.ljust(63)}|")
+    print(f"{Fore.GREEN}{' ' * 4}[?] {prompt_message.ljust(63)}")
     print(f"{Fore.GREEN}{'=⟩' * 1}")
     return input(f"{Fore.YELLOW}{' ' * 4}> ").strip()
 
