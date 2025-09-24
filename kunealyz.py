@@ -15,6 +15,19 @@ import validators
 import aiohttp
 from colorama import Fore, Style, initif 
 
+if #This Script DoNot Use Proxy
+
+import aiohttp
+import asyncio
+from aiohttp_socks import ProxyConnector
+import numpy as np
+from datetime import datetime
+import os
+
+# Clear screen
+os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def display_header():
     header_lines = [                                                                    {Fore.RED}  {Fore.WHITE}
         f"{Fore.GREEN}══════════════════════════════════════════════════════════════════",
