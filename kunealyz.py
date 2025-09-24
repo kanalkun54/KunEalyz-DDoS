@@ -26,7 +26,8 @@ def display_header():
         f"{Fore.YELLOW}═════════════════════════════════════════════════════════════════",
     ]
             
-
+for line in header_lines:
+    print(line)
 
 async def test_url(url, proxy, concurrency=50, duration=60):
     start_time = datetime.now()
@@ -36,7 +37,7 @@ async def test_url(url, proxy, concurrency=50, duration=60):
     try:
         connector = ProxyConnector.from_url(proxy)
         async with aiohttp.ClientSession(connector=connector) as session:
-            print(f"\033[94m[*] Starting stress test on {url} with proxy {proxy}\033[0m")
+            print(f"{Fore.YELLOW}[*] Starting stress test on {url} with proxy {proxy}")
             tasks = []
             
             async def single_request():
@@ -48,9 +49,9 @@ async def test_url(url, proxy, concurrency=50, duration=60):
                         latency = asyncio.get_event_loop().time() - start
                         latencies.append(latency)
                         request_count += 1
-                        print(f"\033[94m[+] Success | Status: {response.status} | Latency: {latency*1000:.2f}ms\033[0m")
+                        print(f"{Fore.GREEN}[+] Success | Status: {response.status} | Latency: {latency*1000:.2f}ms")
                 except Exception as e:
-                    print(f"\033[91m[-] Request failed: {e}\033[0m")
+                    print(f"{Fore.MAGENTA}[-] Request failed: {e")
             
             while (datetime.now() - start_time).total_seconds() < duration:
                 tasks = [single_request() for _ in range(concurrency)]
@@ -59,13 +60,13 @@ async def test_url(url, proxy, concurrency=50, duration=60):
             
             # Calculate metrics
             if latencies:
-                print(f"\033[92m[+] Test completed. Requests sent: {request_count}\033[0m")
+                print(f"{Fore.CYAN}[+] Test completed. Requests sent: {request_count}")
                 print(f"[+] RPS: {request_count / duration:.2f}")
                 print(f"[+] Latency (ms): P50={np.percentile(latencies, 50)*1000:.2f}, "
                       f"P95={np.percentile(latencies, 95)*1000:.2f}, "
                       f"P99={np.percentile(latencies, 99)*1000:.2f}")
             else:
-                print("\033[91m[!] No successful requests.\033[0m")
+                print("{Fore.REF}[!] No successful requests.")
     
     except Exception as e:
         print(f"\033[91m[!] Error with proxy {proxy}: {e}\033[0m")
