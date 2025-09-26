@@ -26,7 +26,7 @@ print(banner)
 
 def main_menu(): 
     while True: print(f"{Fore.YELLOW}1. Request Test") 
-        print("2. Light Load Test (Without Installation)") 
+        print("2. Light Load Test (Without installation)") 
         print("3. Advanced Load Test (k6)") 
         choice = input(f"{Fore.CYAN}Choose an option (1-3): ").strip()
 
