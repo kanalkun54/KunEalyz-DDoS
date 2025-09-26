@@ -1,19 +1,15 @@
-#This Script DoNot Use Proxy
-
-import aiohttp
-import asyncio
-from aiohttp_socks import ProxyConnector
-import numpy as np
-from datetime import datetime
+import requests
+import threading
 import os
+import time
+import asyncio
+import aiohttp
+from colorama import Fore, Style, init
 
-# Clear screen
-os.system('cls' if os.name == 'nt' else 'clear')
+init(autoreset=True)
 
-
-# ASCII Logo
-LOGO = """    
-\033[92m
+banner = f"""
+{Fore.CYAN}
         ══════════════════════════════════════════════════════════════════
         █▒▒  █▒▒█▒▒  █▒▒██▒▒    █▒▒██████▒▒ ███▒▒  █▒▒   ███████▒▒
         █▒▒ █▒▒ █▒▒  █▒▒█▒█▒▒   █▒▒█▒▒     █▒▒ █▒▒ █▒▒         █▒▒
@@ -24,89 +20,136 @@ LOGO = """
         █▒▒  █▒▒██████▒▒█▒▒    ██▒▒█████▒▒█▒▒   █▒▒█████▒▒███████▒▒
                                                         
         ═════════════════════════════════════════════════════════════════
-   033[0m 
-    """
-async def test_url(url, proxy, concurrency=50, duration=60):
-    start_time = datetime.now()
-    request_count = 0
-    latencies = []
-    
-    try:
-        connector = ProxyConnector.from_url(proxy)
-        async with aiohttp.ClientSession(connector=connector) as session:
-            print(f"\033[33m[*] Starting stress test on {url} with proxy {proxy}\033[0m")
-            tasks = []
-            
-            async def single_request():
-                nonlocal request_count
-                try:
-                    start = asyncio.get_event_loop().time()
-                    async with session.get(url, headers={'X-Stress-Test': 'StressTestPro'}, timeout=10) as response:
-                        await response.read()
-                        latency = asyncio.get_event_loop().time() - start
-                        latencies.append(latency)
-                        request_count += 1
-                        print(f"{Fore.GREEN}[+] Success | Status: {response.status} | Latency: {latency*1000:.2f} ms")
-                except Exception as e:
-                        print(f"\033[92m[-] Request failed: {e}\033[0m")
-            
-            while (datetime.now() - start_time).total_seconds() < duration:
-                tasks = [single_request() for _ in range(concurrency)]
-                await asyncio.gather(*tasks, return_exceptions=True)
-                await asyncio.sleep(0.1)  # Prevent overwhelming the server
-            
-            # Calculate metrics
-            if latencies:
-                print(f"\033[32m[+] Test completed. Requests sent: {request_count}\033[0m")
-                print(f"[+] RPS: {request_count / duration:.2f}")
-                print(f"[+] Latency (ms): P50={np.percentile(latencies, 50)*1000:.2f}, "
-                      f"P95={np.percentile(latencies, 95)*1000:.2f}, "
-                      f"P99={np.percentile(latencies, 99)*1000:.2f}")
-            else:
-                print("{Fore.REF}[!] No successful requests.")
-    
-    except Exception as e:
-        print(f"\033[91m[!] Error with proxy {proxy}: {e}\033[0m")
+{Fore.LIGHTMAGENTA_EX}By:Kun{Style.RESET_ALL}
+"""
+print(banner)
 
-async def main():
-    print(LOGO)
-    
-    # Validate inputs
+def main_menu(): 
+    while True: print(f"{Fore.YELLOW}1. Request Test") 
+      print("2. Light Load Test (Without Installation)") 
+     print("3. Advanced Load Test (k6)") 
+        choice = input(f"{Fore.CYAN}Choose an option (1-3): ").strip()
+
+        if choice == "1":
+            request_test()
+        elif choice == "2":
+           load_test_menu()
+        elif choice == "3":
+           advanced_load_test()
+        else:
+            print(f"{Fore.RED}Invalid selection. Please try again.\n")
+
+def spam_attack(target):
+    def send():
+        while True:
+            try:
+                response = requests.get(target, timeout=5)
+                color = Fore.GREEN if response.status_code == 200 else Fore.RED
+                print(f"{color}[{response.status_code}] {target}")
+            except Exception as e:
+                print(f"{Fore.RED}[error] {e}")
+    for _ in range(100):
+        threading.Thread(target=send, daemon=True).start()
+
+def istek_testi():
     while True:
-        url = input("[?] Enter target URL (e.g., https://ex.com): ").strip()
-        if url.startswith(('http://', 'https://')):
+        print(f"{Fore.YELLOW}1. IP ile Test")
+        print("2. Domain ile Test")
+        choice = input(f"{Fore.CYAN}Choose an option (1-2): ").strip()
+
+        if choice == "1":
+            ip = input("IP enter the address: ").strip()
+            if not ip.startswith("http"):
+                ip = f"http://{ip}"
+            spam_attack(ip)
             break
-        print("\033[91m[!] URL must start with http:// or https://\033[0m")
+        elif choice == "2":
+            domain = input("Domain enter the address: ").strip()
+            if not domain.startswith("http"):
+                domain = f"https://{domain}"
+            spam_attack(domain)
+            break
+        else:
+            print(f"{Fore.RED}Invalid selection. Try again.\n") 
+
+def load_test_menu():
+    while True:
+        print(f"{Fore.YELLOW}Light Load Testing Options  :")
+        print("1. syncron (Requests ile)")
+        print("2. asyncron (aiohttp ile)")
+        choice = input(f"{Fore.CYAN}Choose an option (1-2): ").strip()
+
+      if choice in ["1", "2"]:
+            while True:
+                print(f"{Fore.YELLOW}1. IP ile Test")
+                print("2. Domain ile Test")
+                sub_choice = input(f"{Fore.CYAN}Choose an option (1-2): ").strip()
+                if sub_choice == "1":
+                    target = input("IP enter the address: ").strip()
+                    if not target.startswith("http"):
+                        target = f"http://{target}"
+                    break
+                elif sub_choice == "2":
+                    target = input(enter the domain address: ").strip()
+                    if not target.startswith("http"):
+                        target = f"https://{target}"
+                    break
+                else:
+                    print(f"{Fore.RED}Invalid selection. Try again.\ n")
+            if choice == "1":
+              loaded_spam_sync(target)
+            else:
+                asyncio.run(loaded_spam_async(target))
+            break
+        else:
+            print(f"{Fore.RED}Invalid selection. Try again.\n")
+
+def yuklu_spam_sync(target):
+    print(f"{Fore.LIGHTGREEN_EX}Syncron starting load test... (to get out Ctrl+C)")
+    def send():
+        session = requests.Session()
+        while True:
+            try:
+                response = session.get(target, timeout=3)
+                color = Fore.GREEN if response.status_code == 200 else Fore.RED
+                print(f"{color}[{response.status_code}] {target}")
+            except Exception as e:
+                print(f"{Fore.RED}[error] {e}")
+    thread_count = 5000 # <----- YOU CAN CHANGE THE THREAD NUMBER HERE (FOR SYNCHRON)
     
+    for _ in range(thread_count):
+        threading.Thread(target=send, daemon=True).start()
+    while True:
+        time.sleep(1)
+
+async def async_attack(session, target):
     while True:
         try:
-            concurrency = int(input("[?] Enter concurrency (50-1000): ").strip())
-            if 50 <= concurrency <= 1000:
-                break
-            print("\033[91m[!] Concurrency must be between 50 and 1000\033[0m")
-        except ValueError:
-            print("\033[91m[!] Please enter a valid number\033[0m")
-    
-    while True:
-        try:
-            duration = int(input("[?] Enter duration in seconds (60-3600): ").strip())
-            if 60 <= duration <= 3600:
-                break
-            print("\033[91m[!] Duration must be between 60 and 3600\033[0m")
-        except ValueError:
-            print("\033[91m[!] Please enter a valid number\033[0m")
-    
-    # Use Tor proxy
-    tor_proxy = "socks5://127.0.0.1:9150"  # Tor Browser
-    # tor_proxy = "socks5://127.0.0.1:9050"  # Tor service
-    
-    print(f"\033[93m[*] Using Tor proxy: {tor_proxy}\033[0m")
-    await test_url(url, tor_proxy, concurrency, duration)
+            async with session.get(target, timeout=3) as response:
+                status = response.status
+                color = Fore.GREEN if status == 200 else Fore.RED
+                print(f"{color}[{status}] {target}")
+        except Exception as e:
+            print(f"{Fore.RED}[error] {e}")
+      wait asyncio.sleep(0)  # give up control
+
+async def loaded_spam_async(target):
+    print(f"{Fore.LIGHTGREEN_EX}Starting asynchronous load test... (to get out Ctrl+C)")
+    async with aiohttp.ClientSession() as session:
+        tasks = []
+        concurrency = 10000  # <----- YOU CAN CHANGE THE NUMBER OF CONCURRENT TASK HERE (FOR ASYNCHRONOUS)
+        for _ in range(concurrency):
+            task = asyncio.create_task(async_attack(session, target))
+            tasks.append(task)
+        await asyncio.gather(*tasks)
+
+def advanced_load_test():
+    print(f"{Fore.YELLOW}This feature uses the k6 tool and external requires installation.")
+    print(f"{Fore.CYAN}setup: npm install -g k6")
+    print(f"{Fore.CYAN}Example command: k6 run script.js")
+    print(f"{Fore.MAGENTA}This section is for non-terminal use.works.\n")
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\033[91m[!] Test stopped by user.\033[0m")
-    except Exception as e:
-        print(f"\033[91m[!] Fatal error: {e}\033[0m")
+    main_menu()
+    
+
